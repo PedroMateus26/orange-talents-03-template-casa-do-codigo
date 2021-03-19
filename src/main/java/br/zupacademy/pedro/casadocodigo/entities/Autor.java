@@ -1,6 +1,7 @@
 package br.zupacademy.pedro.casadocodigo.entities;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 @Table(name = "tb_autor")
@@ -18,6 +19,10 @@ public class Autor {
 
     @Column(columnDefinition = "TEXT",length=400)
     private String descricao;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant createdAt;
+
 
     public Autor() {
     }
@@ -50,6 +55,11 @@ public class Autor {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    @PrePersist
+    public void prePersist(){
+        this.createdAt=Instant.now();
     }
 
 }
