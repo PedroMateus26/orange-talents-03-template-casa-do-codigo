@@ -1,4 +1,4 @@
-package br.zupacademy.pedro.casadocodigo.Autor;
+package br.zupacademy.pedro.casadocodigo.autor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

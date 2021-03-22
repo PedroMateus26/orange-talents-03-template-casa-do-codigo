@@ -1,9 +1,10 @@
-package br.zupacademy.pedro.casadocodigo.Autor;
+package br.zupacademy.pedro.casadocodigo.autor;
 
-import br.zupacademy.pedro.casadocodigo.Autor.anotations.AutorValid;
+import br.zupacademy.pedro.casadocodigo.autor.anotations.AutorValid;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @AutorValid
@@ -11,15 +12,15 @@ public class AutorRequestDTO {
 
     private Long id;
 
-    @NotBlank(message = "Campo obrigatório")
+    @NotEmpty(message = "Campo obrigatório")
     private String nome;
 
     @Email
-    @NotBlank(message = "Campo obrigatório")
+    @NotEmpty(message = "Campo obrigatório")
     private String email;
 
     @Size(max = 400, message = "O nome deve ter entre no máximo 400 caracteres")
-    @NotBlank(message = "Campo obrigatório")
+    @NotEmpty(message = "Campo obrigatório")
     private String descricao;
 
     public AutorRequestDTO() {

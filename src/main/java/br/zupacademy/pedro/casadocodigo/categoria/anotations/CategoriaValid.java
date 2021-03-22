@@ -1,4 +1,6 @@
-package br.zupacademy.pedro.casadocodigo.Autor.anotations;
+package br.zupacademy.pedro.casadocodigo.categoria.anotations;
+
+import br.zupacademy.pedro.casadocodigo.autor.anotations.AutorValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -8,15 +10,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Constraint(validatedBy = AutorValidator.class)
+@Constraint(validatedBy = CategoriaValidator.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AutorValid {
+public @interface CategoriaValid {
 
-    String message() default "Validation error";
+    String message() default "Erro de validação";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
 }

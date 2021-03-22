@@ -1,8 +1,8 @@
-package br.zupacademy.pedro.casadocodigo.Autor.anotations;
+package br.zupacademy.pedro.casadocodigo.autor.anotations;
 
-import br.zupacademy.pedro.casadocodigo.Autor.Autor;
-import br.zupacademy.pedro.casadocodigo.Autor.AutorRequestDTO;
-import br.zupacademy.pedro.casadocodigo.Autor.AutorRepository;
+import br.zupacademy.pedro.casadocodigo.autor.Autor;
+import br.zupacademy.pedro.casadocodigo.autor.AutorRequestDTO;
+import br.zupacademy.pedro.casadocodigo.autor.AutorRepository;
 import br.zupacademy.pedro.casadocodigo.exceptions.handler.FieldMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 
