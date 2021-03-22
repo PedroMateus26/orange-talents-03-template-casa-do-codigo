@@ -1,4 +1,4 @@
-package br.zupacademy.pedro.casadocodigo.entities;
+package br.zupacademy.pedro.casadocodigo.Autor;
 
 import javax.persistence.*;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package br.zupacademy.pedro.casadocodigo.controllers.exceptions;
+package br.zupacademy.pedro.casadocodigo.exceptions.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
-import java.util.List;
 
 @RestControllerAdvice
 public class ControllerEsceptionHandler {

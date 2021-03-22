@@ -1,12 +1,13 @@
-package br.zupacademy.pedro.casadocodigo.dtos;
+package br.zupacademy.pedro.casadocodigo.Autor;
 
-import br.zupacademy.pedro.casadocodigo.entities.Autor;
+import br.zupacademy.pedro.casadocodigo.Autor.anotations.AutorValid;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class AutorDTO {
+@AutorValid
+public class AutorRequestDTO {
 
     private Long id;
 
@@ -21,17 +22,17 @@ public class AutorDTO {
     @NotBlank(message = "Campo obrigatório")
     private String descricao;
 
-    public AutorDTO() {
+    public AutorRequestDTO() {
     }
 
-    public AutorDTO(Long id, String nome, String email, String descricao) {
+    public AutorRequestDTO(Long id, String nome, String email, String descricao) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
     }
 
-    public AutorDTO(Autor entity) {
+    public AutorRequestDTO(Autor entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.email = entity.getEmail();
@@ -68,5 +69,14 @@ public class AutorDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Autor convertAutorDTOToAutorEntity(AutorRequestDTO autorDTO){
+        Autor autor = new Autor(
+                autorDTO.getNome(),
+                autorDTO.getEmail(),
+                autorDTO.getDescricao()
+        );
+        return autor;
     }
 }
