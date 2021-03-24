@@ -1,21 +1,15 @@
 package br.zupacademy.pedro.casadocodigo.livro;
 
-import br.zupacademy.pedro.casadocodigo.autor.AutorRepository;
-import br.zupacademy.pedro.casadocodigo.categoria.Categoria;
-import br.zupacademy.pedro.casadocodigo.categoria.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/livros")
@@ -43,6 +37,14 @@ public class LivroController {
         Livro livro=livroRequestDTO.transformToEntityLivro(livroRequestDTO, entityManager);
         livro=livroRepository.save(livro);
         return  ResponseEntity.ok().body(new LivroRequestDTO(livro));
+    }
+
+    @GetMapping
+    @Transactional
+    public ResponseEntity<List<LivroExibirRequestDTO>> findAll(){
+        List<Livro> list = livroRepository.findAll();
+        return ResponseEntity.ok().body(list.stream()
+                .map(livro->new LivroExibirRequestDTO(livro)).collect(Collectors.toList()));
     }
 
 
