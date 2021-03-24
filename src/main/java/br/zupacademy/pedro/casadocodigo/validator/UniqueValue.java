@@ -1,6 +1,4 @@
-package br.zupacademy.pedro.casadocodigo.categoria.anotations;
-
-import br.zupacademy.pedro.casadocodigo.autor.anotations.AutorValidator;
+package br.zupacademy.pedro.casadocodigo.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -10,14 +8,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Constraint(validatedBy = CategoriaValidator.class)
-@Target({ ElementType.TYPE })
+@Constraint(validatedBy = UniqueValidatorValue.class)
+@Target({ ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CategoriaValid {
+public @interface UniqueValue {
 
-    String message() default "Erro de validação";
+    String message() default "";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
+    String fieldName();
+
+    Class<?> domainClass();
 }

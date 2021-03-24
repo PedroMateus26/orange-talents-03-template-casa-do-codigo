@@ -57,9 +57,18 @@ public class Autor {
         return descricao;
     }
 
-    @PrePersist
-    public void prePersist(){
-        this.createdAt=Instant.now();
+   @PrePersist
+   public void prePersist(){
+       this.createdAt=Instant.now();
     }
 
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

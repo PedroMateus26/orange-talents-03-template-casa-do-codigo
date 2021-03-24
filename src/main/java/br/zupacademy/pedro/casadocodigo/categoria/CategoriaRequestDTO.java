@@ -1,16 +1,22 @@
 package br.zupacademy.pedro.casadocodigo.categoria;
 
-import br.zupacademy.pedro.casadocodigo.categoria.anotations.CategoriaValid;
+import br.zupacademy.pedro.casadocodigo.validator.UniqueValue;
 
 import javax.validation.constraints.NotEmpty;
 
-@CategoriaValid
 public class CategoriaRequestDTO {
 
+    private Long id;
+
     @NotEmpty(message = "Campo obrigatório")
+    @UniqueValue(domainClass = Categoria.class,fieldName = "nomeCategoria")
     private String nomeCategoria;
 
     public CategoriaRequestDTO() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public CategoriaRequestDTO(String nomeCategoria) {
@@ -28,4 +34,6 @@ public class CategoriaRequestDTO {
     public void setNomeCategoria(String nomeCategoria) {
         this.nomeCategoria = nomeCategoria;
     }
+
+
 }

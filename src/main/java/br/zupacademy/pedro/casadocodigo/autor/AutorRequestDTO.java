@@ -1,13 +1,11 @@
 package br.zupacademy.pedro.casadocodigo.autor;
 
-import br.zupacademy.pedro.casadocodigo.autor.anotations.AutorValid;
+import br.zupacademy.pedro.casadocodigo.validator.UniqueValue;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@AutorValid
 public class AutorRequestDTO {
 
     private Long id;
@@ -17,6 +15,7 @@ public class AutorRequestDTO {
 
     @Email
     @NotEmpty(message = "Campo obrigatório")
+    @UniqueValue(domainClass = Autor.class,fieldName = "email")
     private String email;
 
     @Size(max = 400, message = "O nome deve ter entre no máximo 400 caracteres")

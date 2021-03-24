@@ -3,6 +3,7 @@ package br.zupacademy.pedro.casadocodigo.categoria;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tb_categoria")
 public class Categoria {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +29,12 @@ public class Categoria {
 
     public void setNomeCategoria(String nomeCategoria) {
         this.nomeCategoria = nomeCategoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "nomeCategoria='" + nomeCategoria + '\'' +
+                '}';
     }
 }

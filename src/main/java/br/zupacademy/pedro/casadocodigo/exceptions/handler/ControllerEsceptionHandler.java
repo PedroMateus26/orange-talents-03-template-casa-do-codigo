@@ -28,7 +28,5 @@ public class ControllerEsceptionHandler {
         }
 
         return ResponseEntity.status(status).body(err);
-
-
     }
 }
