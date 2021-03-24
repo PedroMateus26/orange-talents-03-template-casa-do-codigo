@@ -6,9 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,6 +47,13 @@ public class LivroController {
         List<Livro> list = livroRepository.findAll();
         return ResponseEntity.ok().body(list.stream()
                 .map(livro->new LivroExibirRequestDTO(livro)).collect(Collectors.toList()));
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<LivroRequestDTO> findById(@PathVariable Long id){
+        Optional<Livro> livroOtional = livroRepository.findById(id);
+        Livro livro = livroOtional.orElseThrow(()->new EntityNotFoundException("Entidade não encontrado nos registros"));
+        return ResponseEntity.ok().body(new LivroRequestDTO(livro));
     }
 
 

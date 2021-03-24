@@ -7,6 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
@@ -27,6 +28,18 @@ public class ControllerEsceptionHandler {
             err.addError(f.getField(),f.getDefaultMessage());
         }
 
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError err = new StandardError();
+        err.setTimestamp(Instant.now());
+        err.setStatus(status.value());
+        err.setError("Entity not found");
+        err.setPath(request.getRequestURI());
+        err.setMessage(e.getMessage());
         return ResponseEntity.status(status).body(err);
     }
 }
