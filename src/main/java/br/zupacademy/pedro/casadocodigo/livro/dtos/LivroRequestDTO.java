@@ -139,7 +139,8 @@ public class LivroRequestDTO {
 
     public Livro transformToEntityLivro(LivroRequestDTO livroRequestDTO, EntityManager entityManager) {
         Autor autor = entityManager.find(Autor.class, livroRequestDTO.getAutor().getId());
-        Assert.state(autor!=null,"Você está querendo cadastrar um autor que não existe no banco");
+        Assert.state(autor!=null,"Você está querendo cadastrar um autor que não" +
+                " existe no banco");
         Categoria categoria = entityManager.find(Categoria.class,livroRequestDTO.getCategoria().getId());
         Assert.state(categoria!=null,"Você está querendo cadastrar uma categoria que não existe no banco");
         Livro livro = new Livro(

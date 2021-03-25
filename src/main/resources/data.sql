@@ -12,10 +12,14 @@ INSERT INTO tb_categoria (nome_categoria) VALUES ('policial');
 INSERT INTO tb_categoria (nome_categoria) VALUES ('drama');
 INSERT INTO tb_categoria (nome_categoria) VALUES ('romance');
 
---INSERT INTO tb_pais (nomePais) VALUES ('Brasil');
---INSERT INTO tb_pais (nomePais) VALUES ('França');
---INSERT INTO tb_pais (nomePais) VALUES ('Japão');
---INSERT INTO tb_pais (nomePais) VALUES ('Estados Unidos');
+INSERT INTO tb_pais (nome) VALUES ('Brasil');
+INSERT INTO tb_pais (nome) VALUES ('França');
+INSERT INTO tb_pais (nome) VALUES ('Japão');
+INSERT INTO tb_pais (nome) VALUES ('Estados Unidos');
+
+INSERT INTO tb_estado (nome, pais_id) VALUES ('Minas Gerais', 1);
+INSERT INTO tb_estado (nome, pais_id) VALUES ('São Paulo', 1);
+INSERT INTO tb_estado (nome, pais_id) VALUES ('Rio de Janeiro', 1);
 
 INSERT INTO tb_livro (titulo,resumo,sumario,preco,numero_Paginas,isbn,data_Publicacao,autor_id,categoria_id) VALUES ('titulo2','resumo2','sumario2',100,250,12354,'2022-07-13T20:50:07.12345Z',2,2);
 INSERT INTO tb_livro (titulo,resumo,sumario,preco,numero_Paginas,isbn,data_Publicacao,autor_id,categoria_id) VALUES ('titulo1','resumo1','sumario1',125,500,12345,'2022-08-13T20:50:07.12345Z',1,1);

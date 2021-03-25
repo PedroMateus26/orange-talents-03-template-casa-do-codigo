@@ -8,11 +8,13 @@ import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Service
 public class EstadoRequestDTO {
 
+    @NotNull
     @UniqueValue(domainClass = Estado.class, fieldName = "nome")
     private String nome;
     private Pais pais;

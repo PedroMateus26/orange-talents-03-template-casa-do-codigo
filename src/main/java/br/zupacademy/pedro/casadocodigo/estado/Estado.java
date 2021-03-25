@@ -5,7 +5,7 @@ import br.zupacademy.pedro.casadocodigo.pais.Pais;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_estados")
+@Table(name = "tb_estado")
 public class Estado {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,10 @@ public class Estado {
         this.pais = pais;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -30,4 +34,6 @@ public class Estado {
     public Pais getPais() {
         return pais;
     }
+
+
 }

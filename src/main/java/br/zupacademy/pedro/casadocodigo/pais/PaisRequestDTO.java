@@ -2,7 +2,11 @@ package br.zupacademy.pedro.casadocodigo.pais;
 
 import br.zupacademy.pedro.casadocodigo.validator.UniqueValue;
 
+import javax.validation.constraints.NotNull;
+
 public class PaisRequestDTO {
+
+    @NotNull
     @UniqueValue(domainClass = Pais.class, fieldName = "nome")
     private String nome;
 
