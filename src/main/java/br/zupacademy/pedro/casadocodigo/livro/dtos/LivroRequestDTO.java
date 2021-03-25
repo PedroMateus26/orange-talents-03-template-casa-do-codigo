@@ -1,11 +1,9 @@
-package br.zupacademy.pedro.casadocodigo.livro;
+package br.zupacademy.pedro.casadocodigo.livro.dtos;
 
 import br.zupacademy.pedro.casadocodigo.autor.Autor;
-import br.zupacademy.pedro.casadocodigo.autor.AutorRepository;
 import br.zupacademy.pedro.casadocodigo.categoria.Categoria;
-import br.zupacademy.pedro.casadocodigo.categoria.CategoriaRepository;
+import br.zupacademy.pedro.casadocodigo.livro.Livro;
 import br.zupacademy.pedro.casadocodigo.validator.UniqueValue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -141,9 +139,9 @@ public class LivroRequestDTO {
 
     public Livro transformToEntityLivro(LivroRequestDTO livroRequestDTO, EntityManager entityManager) {
         Autor autor = entityManager.find(Autor.class, livroRequestDTO.getAutor().getId());
-        Assert.state(autor!=null,"Você está querendo cadastrar um autor que nõ existe no banco");
+        Assert.state(autor!=null,"Você está querendo cadastrar um autor que não existe no banco");
         Categoria categoria = entityManager.find(Categoria.class,livroRequestDTO.getCategoria().getId());
-        Assert.state(categoria!=null,"Você está querendo cadastrar uma categoria que nõ existe no banco");
+        Assert.state(categoria!=null,"Você está querendo cadastrar uma categoria que não existe no banco");
         Livro livro = new Livro(
                 livroRequestDTO.getTitulo(),
                 livroRequestDTO.getResumo(),

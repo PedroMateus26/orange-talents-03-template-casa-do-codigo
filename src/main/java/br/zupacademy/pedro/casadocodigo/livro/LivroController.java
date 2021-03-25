@@ -1,5 +1,8 @@
 package br.zupacademy.pedro.casadocodigo.livro;
 
+import br.zupacademy.pedro.casadocodigo.livro.dtos.DetalhesLivroResponseDTO;
+import br.zupacademy.pedro.casadocodigo.livro.dtos.ExibirListaLivrosResponseDTO;
+import br.zupacademy.pedro.casadocodigo.livro.dtos.LivroRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,17 +46,17 @@ public class LivroController {
 
     @GetMapping
     @Transactional
-    public ResponseEntity<List<LivroExibirRequestDTO>> findAll(){
+    public ResponseEntity<List<ExibirListaLivrosResponseDTO>> findAll(){
         List<Livro> list = livroRepository.findAll();
         return ResponseEntity.ok().body(list.stream()
-                .map(livro->new LivroExibirRequestDTO(livro)).collect(Collectors.toList()));
+                .map(livro->new ExibirListaLivrosResponseDTO(livro)).collect(Collectors.toList()));
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<LivroRequestDTO> findById(@PathVariable Long id){
+    public ResponseEntity<DetalhesLivroResponseDTO> findById(@PathVariable Long id){
         Optional<Livro> livroOtional = livroRepository.findById(id);
         Livro livro = livroOtional.orElseThrow(()->new EntityNotFoundException("Entidade não encontrado nos registros"));
-        return ResponseEntity.ok().body(new LivroRequestDTO(livro));
+        return ResponseEntity.ok().body(new DetalhesLivroResponseDTO(livro));
     }
 
 
