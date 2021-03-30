@@ -10,16 +10,14 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueValidatorValue.class)
-public @interface UniqueValue {
+@Constraint(validatedBy = ExistIdValidator.class)
+public @interface ExistIdValue {
 
     String message() default "";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
-    String fieldName();
 
     Class<?> domainClass();
 }

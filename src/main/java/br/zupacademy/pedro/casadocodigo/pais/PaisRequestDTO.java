@@ -21,7 +21,7 @@ public class PaisRequestDTO {
         return nome;
     }
 
-    public Pais convertToRquestDTO(PaisRequestDTO paisRequestDTO) {
-        return new Pais(paisRequestDTO.getNome());
+    public Pais convertToRquestDTO() {
+        return new Pais(getNome());
     }
 }

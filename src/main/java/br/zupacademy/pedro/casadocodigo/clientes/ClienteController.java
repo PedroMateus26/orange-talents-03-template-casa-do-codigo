@@ -1,6 +1,5 @@
 package br.zupacademy.pedro.casadocodigo.clientes;
 
-import br.zupacademy.pedro.casadocodigo.clientes.dtos.ClienteRequestDTO;
 import br.zupacademy.pedro.casadocodigo.estado.Estadorepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,6 @@ import javax.validation.Valid;
 @RequestMapping(value = "/clientes")
 public class ClienteController {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     private ClienteRepository clienteRepository;
 
     private Estadorepository estadorepository;
@@ -31,11 +27,10 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteRequestDTO> insertCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO){
-        //Cliente cliente = clienteRequestDTO.convertToCliente(entityManager);
-        Cliente cliente = clienteRequestDTO.convertToCliente(entityManager,estadorepository);
+    public ResponseEntity<ClienteResponseDTO> insertCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO){
+        Cliente cliente = clienteRequestDTO.convertToCliente();
         cliente = clienteRepository.save(cliente);
-        return ResponseEntity.ok().body(new ClienteRequestDTO(cliente));
+        return ResponseEntity.ok(new ClienteResponseDTO(cliente));
     }
 
 }

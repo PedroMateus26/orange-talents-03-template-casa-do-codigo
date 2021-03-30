@@ -10,16 +10,12 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueValidatorValue.class)
-public @interface UniqueValue {
+@Constraint(validatedBy = ExistStateIntocountryValidator.class)
+public @interface ExistStateIntoCountry {
 
     String message() default "";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
-    String fieldName();
-
-    Class<?> domainClass();
 }

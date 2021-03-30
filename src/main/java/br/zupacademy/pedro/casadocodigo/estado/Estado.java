@@ -13,6 +13,7 @@ public class Estado {
     private String nome;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Pais pais;
 
     public Estado() {
@@ -21,6 +22,10 @@ public class Estado {
     public Estado(String nome, Pais pais) {
         this.nome = nome;
         this.pais = pais;
+    }
+
+    public Estado(Long estadoId) {
+        this.id=estadoId;
     }
 
     public Long getId() {

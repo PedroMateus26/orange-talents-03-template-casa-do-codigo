@@ -25,7 +25,7 @@ public class AutorController {
 
     @PostMapping
     public ResponseEntity<AutorRequestDTO> inserirAutor(@Valid @RequestBody AutorRequestDTO autorDTO){
-        Autor autor =  autorDTO.convertAutorDTOToAutorEntity(autorDTO);
+        Autor autor =  autorDTO.convertAutorDTOToAutorEntity();
         autor=autorRepository.save(autor);
         autorDTO=new AutorRequestDTO(autor);
         //URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autorDTO.getId()).toUri();

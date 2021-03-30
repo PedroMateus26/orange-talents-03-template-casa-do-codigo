@@ -20,7 +20,7 @@ public class PaisController {
 
     @PostMapping
     public ResponseEntity<PaisRequestDTO> insertPais(@RequestBody @Valid PaisRequestDTO paisRequestDTO){
-        Pais pais = paisRequestDTO.convertToRquestDTO(paisRequestDTO);
+        Pais pais = paisRequestDTO.convertToRquestDTO();
         pais = paisRepository.save(pais);
         return ResponseEntity.ok().body(new PaisRequestDTO(pais));
     }

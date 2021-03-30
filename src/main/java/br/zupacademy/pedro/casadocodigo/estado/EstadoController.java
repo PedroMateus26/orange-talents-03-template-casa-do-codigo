@@ -15,8 +15,6 @@ import javax.validation.Valid;
 @RequestMapping(value = "/estados")
 public class EstadoController {
 
-    @PersistenceContext
-    private EntityManager entityManager;
     private Estadorepository estadorepository;
 
     public EstadoController(Estadorepository estadorepository) {
@@ -25,7 +23,7 @@ public class EstadoController {
 
     @PostMapping
     public ResponseEntity<EstadoRequestDTO> insertEstado(@RequestBody @Valid EstadoRequestDTO estadoRequestDTO){
-        Estado estado = estadoRequestDTO.convertToEstado(estadoRequestDTO,entityManager);
+        Estado estado = estadoRequestDTO.convertToEstado();
         estado = estadorepository.save(estado);
         return ResponseEntity.ok().body(new EstadoRequestDTO(estado));
     }

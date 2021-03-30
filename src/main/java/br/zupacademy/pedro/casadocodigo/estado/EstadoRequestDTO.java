@@ -1,15 +1,12 @@
 package br.zupacademy.pedro.casadocodigo.estado;
 
 import br.zupacademy.pedro.casadocodigo.pais.Pais;
-import br.zupacademy.pedro.casadocodigo.pais.PaisRepository;
+import br.zupacademy.pedro.casadocodigo.validator.ExistIdValue;
 import br.zupacademy.pedro.casadocodigo.validator.UniqueValue;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
-import java.util.Optional;
 
 @Service
 public class EstadoRequestDTO {
@@ -17,28 +14,29 @@ public class EstadoRequestDTO {
     @NotNull
     @UniqueValue(domainClass = Estado.class, fieldName = "nome")
     private String nome;
-    private Pais pais;
+    @ExistIdValue(domainClass = Pais.class)
+    private Long paisId;
 
     public EstadoRequestDTO() {
     }
 
     public EstadoRequestDTO(Estado entity){
         this.nome = entity.getNome();
-        this.pais = entity.getPais();
+        this.paisId = entity.getPais().getId();
     }
 
     public String getNome() {
         return nome;
     }
 
-    public Pais getPais() {
-        return pais;
+    public EstadoRequestDTO(Long paisId) {
+        this.paisId = paisId;
     }
 
-    public Estado convertToEstado(EstadoRequestDTO estadoRequestDTO, EntityManager entityManager) {
-        //Optional<Pais> paisOptional = paisRepository.findById(estadoRequestDTO.getPais().getId());
-        Pais pais = entityManager.find(Pais.class,estadoRequestDTO.getPais().getId());
-        Assert.state(pais!=null, "Você está tentando cadastrar um estádo no qual o país não existe");
-        return new Estado(estadoRequestDTO.getNome(),pais);
+    public Estado convertToEstado() {
+        return new Estado(
+                this.nome,
+                new Pais(this.paisId)
+        );
     }
 }
