@@ -34,23 +34,13 @@ public class LivroRequestDTO {
     @Future
     private Instant dataPublicacao;
 
-    private Autor autor;
-    private Categoria categoria;
+    private Long autorId;
+    private Long categoriaid;
 
     public LivroRequestDTO() {
     }
 
-    public LivroRequestDTO(String titulo, String resumo, String sumario, Double preco, Integer numeroPaginas, Long isbn, Instant dataPublicacao, Autor autor, Categoria categoria) {
-        this.titulo = titulo;
-        this.resumo = resumo;
-        this.sumario = sumario;
-        this.preco = preco;
-        this.numeroPaginas = numeroPaginas;
-        this.isbn = isbn;
-        this.dataPublicacao = dataPublicacao;
-        this.autor = autor;
-        this.categoria = categoria;
-    }
+
 
     public LivroRequestDTO(Livro entity){
         this.titulo = entity.getTitulo();
@@ -60,8 +50,8 @@ public class LivroRequestDTO {
         this.numeroPaginas = entity.getNumeroPaginas();
         this.isbn = entity.getIsbn();
         this.dataPublicacao = entity.getDataPublicacao();
-        this.autor = entity.getAutor();
-        this.categoria = entity.getCategoria();
+        this.autorId = entity.getAutor().getId();
+        this.categoriaid = entity.getCategoria().getId();
 
     }
 
@@ -121,38 +111,25 @@ public class LivroRequestDTO {
         this.dataPublicacao = dataPublicacao;
     }
 
-    public Autor getAutor() {
-        return autor;
+    public void setAutorId(Long autorId) {
+        this.autorId = autorId;
     }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public void setCategoriaid(Long categoriaid) {
+        this.categoriaid = categoriaid;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public Livro transformToEntityLivro(LivroRequestDTO livroRequestDTO, EntityManager entityManager) {
-        Autor autor = entityManager.find(Autor.class, livroRequestDTO.getAutor().getId());
-        Assert.state(autor!=null,"Você está querendo cadastrar um autor que não" +
-                " existe no banco");
-        Categoria categoria = entityManager.find(Categoria.class,livroRequestDTO.getCategoria().getId());
-        Assert.state(categoria!=null,"Você está querendo cadastrar uma categoria que não existe no banco");
+    public Livro transformToEntityLivro() {
         Livro livro = new Livro(
-                livroRequestDTO.getTitulo(),
-                livroRequestDTO.getResumo(),
-                livroRequestDTO.getSumario(),
-                livroRequestDTO.getPreco(),
-                livroRequestDTO.getNumeroPaginas(),
-                livroRequestDTO.getIsbn(),
-                livroRequestDTO.getDataPublicacao(),
-                autor,
-                categoria
+                this.titulo,
+                this.resumo,
+                this.sumario,
+                this.preco,
+                this.numeroPaginas,
+                this.isbn,
+                this.dataPublicacao,
+                new Autor(autorId),
+                new Categoria(categoriaid)
         );
 
         return livro;

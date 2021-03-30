@@ -19,16 +19,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/livros")
 public class LivroController {
-
-//    @Autowired
-//    private AutorRepository autorRepository;
-//
-//    @Autowired
-//    private CategoriaRepository categoriaRepository;
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
     private LivroRepository livroRepository;
 
     @Autowired
@@ -39,7 +29,7 @@ public class LivroController {
     @PostMapping
     @Transactional
     public ResponseEntity<LivroRequestDTO> insertLivro(@RequestBody @Valid LivroRequestDTO livroRequestDTO){
-        Livro livro=livroRequestDTO.transformToEntityLivro(livroRequestDTO, entityManager);
+        Livro livro=livroRequestDTO.transformToEntityLivro();
         livro=livroRepository.save(livro);
         return  ResponseEntity.ok().body(new LivroRequestDTO(livro));
     }

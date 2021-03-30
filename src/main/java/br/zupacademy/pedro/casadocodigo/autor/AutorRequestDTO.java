@@ -71,11 +71,11 @@ public class AutorRequestDTO {
         this.descricao = descricao;
     }
 
-    public Autor convertAutorDTOToAutorEntity(AutorRequestDTO autorDTO){
+    public Autor convertAutorDTOToAutorEntity(){
         Autor autor = new Autor(
-                autorDTO.getNome(),
-                autorDTO.getEmail(),
-                autorDTO.getDescricao()
+                this.nome,
+                this.email,
+                this.descricao
         );
         return autor;
     }

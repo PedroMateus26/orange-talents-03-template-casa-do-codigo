@@ -1,6 +1,7 @@
 package br.zupacademy.pedro.casadocodigo.clientes;
 
 import br.zupacademy.pedro.casadocodigo.estado.Estado;
+import br.zupacademy.pedro.casadocodigo.pais.Pais;
 
 import javax.persistence.*;
 
@@ -23,10 +24,13 @@ public class Cliente {
     @ManyToOne(fetch = FetchType.EAGER)
     private Estado estado;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Pais pais;
+
     public Cliente() {
     }
 
-    public Cliente(String nome, String sobreNome, String email, String documento, String endereco, String complemento, String cidade, String telefone, String cep, Estado estado) {
+    public Cliente(String nome, String sobreNome, String email, String documento, String endereco, String complemento, String cidade, String telefone, String cep, Estado estado, Pais pais) {
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.email = email;
@@ -37,6 +41,20 @@ public class Cliente {
         this.telefone = telefone;
         this.cep = cep;
         this.estado = estado;
+        this.pais = pais;
+    }
+
+    public Cliente(String nome, String sobreNome, String email, String documento, String endereco, String complemento, String cidade, String telefone, String cep, Pais pais) {
+        this.nome = nome;
+        this.sobreNome = sobreNome;
+        this.email = email;
+        this.documento = documento;
+        this.endereco = endereco;
+        this.complemento = complemento;
+        this.cidade = cidade;
+        this.telefone = telefone;
+        this.cep = cep;
+        this.pais = pais;
     }
 
     public Long getId() {
@@ -81,5 +99,9 @@ public class Cliente {
 
     public Estado getEstado() {
         return estado;
+    }
+
+    public Pais getPais() {
+        return pais;
     }
 }

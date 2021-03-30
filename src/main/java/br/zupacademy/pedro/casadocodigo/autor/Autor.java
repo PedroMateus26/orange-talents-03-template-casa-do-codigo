@@ -33,6 +33,10 @@ public class Autor {
         this.descricao = descricao;
     }
 
+    public Autor(Long autorId) {
+        this.id=autorId;
+    }
+
     public Long getId() {
         return id;
     }
